@@ -1,6 +1,9 @@
+
+
 const initialState: InitialStateType = {
     status: 'idle',
-    error: null
+    error: null,
+    isInitialized: false
 }
 
 export const appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
@@ -9,6 +12,8 @@ export const appReducer = (state: InitialStateType = initialState, action: Actio
             return {...state, status: action.status}
         case 'APP/SET-ERROR':
             return {...state, error: action.error}
+        case "login/SET-IS-INITIALIZED":
+            return {...state, isInitialized: action.value}
         default:
             return {...state}
     }
@@ -20,10 +25,12 @@ export type InitialStateType = {
     status: RequestStatusType
     // если ошибка какая-то глобальная произойдёт - мы запишем текст ошибки сюда
     error: string | null
+    isInitialized: boolean
 }
 
 export const setAppErrorAC = (error: string | null) => ({type: 'APP/SET-ERROR', error} as const)
 export const setAppStatusAC = (status: RequestStatusType) => ({type: 'APP/SET-STATUS', status} as const)
+export const setIsInitializedAC = (value: boolean) => ({type: 'login/SET-IS-INITIALIZED', value} as const)
 
 export type SetAppErrorActionType = ReturnType<typeof setAppErrorAC>
 export type SetAppStatusActionType = ReturnType<typeof setAppStatusAC>
@@ -31,3 +38,5 @@ export type SetAppStatusActionType = ReturnType<typeof setAppStatusAC>
 type ActionsType =
     | SetAppErrorActionType
     | SetAppStatusActionType
+    | ReturnType<typeof setIsInitializedAC>
+

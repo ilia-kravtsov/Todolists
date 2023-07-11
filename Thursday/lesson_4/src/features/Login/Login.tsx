@@ -96,8 +96,7 @@ export const Login = () => {
                             // onBlur={formik.handleBlur}
                             // value={formik.values.password}
                         />
-                        {formik.touched.password && formik.errors.password &&
-                            <div style={{color: 'red'}}>{formik.errors.password}</div>}
+                        {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
                         <FormControlLabel label={'Remember me'}
                                           control={<Checkbox {...formik.getFieldProps('rememberMe')}
                                                              checked={formik.values.rememberMe}
