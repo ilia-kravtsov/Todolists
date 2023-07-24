@@ -1,4 +1,4 @@
-import { appReducer, RequestStatusType, setAppErrorAC, setAppStatusAC } from './app-reducer';
+import { appReducer, RequestStatusType, setAppErrorAC, setAppStatusAC } from './app-reducer'
 
 export type InitialStateType = {
   // происходит ли сейчас взаимодействие с сервером
