@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/task_manager/static/css/main.a4a2ec6e.css",
+    "main.js": "/task_manager/static/js/main.bbc19ee4.js",
+    "index.html": "/task_manager/index.html",
+    "main.a4a2ec6e.css.map": "/task_manager/static/css/main.a4a2ec6e.css.map",
+    "main.bbc19ee4.js.map": "/task_manager/static/js/main.bbc19ee4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4a2ec6e.css",
+    "static/js/main.bbc19ee4.js"
+  ]
+}
