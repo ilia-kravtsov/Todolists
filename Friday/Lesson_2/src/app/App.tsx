@@ -30,7 +30,6 @@ function App({ demo = false }: PropsType) {
   const status = useSelector(selectAppStatus);
   const isInitialized = useSelector(selectIsInitialized);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {

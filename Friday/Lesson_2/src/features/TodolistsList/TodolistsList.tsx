@@ -24,6 +24,7 @@ type PropsType = {
 };
 
 export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
+
   const todolists = useSelector(selectTodolists);
   const tasks = useSelector(selectTasks);
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -86,8 +87,8 @@ export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
 
   return (
     <>
-      <Grid container style={{ padding: "20px" }}>
-        <AddItemForm addItem={addTodolist} />
+      <Grid container style={{paddingTop: '20px', paddingBottom: '20px'}}>
+        <AddItemForm addItem={addTodolist}/>
       </Grid>
       <Grid container spacing={3}>
         {todolists.map((tl) => {

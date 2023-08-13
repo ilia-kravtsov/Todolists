@@ -31,13 +31,12 @@ const slice = createSlice({
 export const appReducer = slice.reducer;
 export const appActions = slice.actions;
 
-export const initializeAppTC = () => (dispatch: Dispatch) => {
-  authAPI.me().then((res) => {
+export const initializeAppTC = () => async (dispatch: Dispatch) => {
+    const res = await authAPI.me()
     if (res.data.resultCode === 0) {
       dispatch(authActions.setIsLoggedIn({ isLoggedIn: true }));
     } else {
+      console.log(res.data.messages[0])
     }
-
     dispatch(appActions.setAppInitialized({ isInitialized: true }));
-  });
 };
