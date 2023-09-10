@@ -60,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "jest": "^29.6.4",
     "prettier": "2.8.8"
   }
 }

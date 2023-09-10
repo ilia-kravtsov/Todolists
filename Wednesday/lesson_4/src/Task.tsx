@@ -4,23 +4,27 @@ import {EditableSpan} from './EditableSpan'
 import {TaskType} from './Todolist'
 import {IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
+import {useDispatch} from "react-redux";
+import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
 
 type TaskPropsType = {
-    changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
-    changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
-    removeTask: (taskId: string, todolistId: string) => void
     task: TaskType
     todolistId: string
 }
 export const Task = React.memo((props: TaskPropsType) => {
-    const onClickHandler = () => props.removeTask(props.task.id, props.todolistId)
+
+    const dispatch = useDispatch()
+
+    const onClickHandler = () => dispatch(removeTaskAC(props.task.id, props.todolistId)) //props.removeTask(props.task.id, props.todolistId)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked
-        props.changeTaskStatus(props.task.id, newIsDoneValue, props.todolistId)
+        dispatch(changeTaskStatusAC(props.task.id, newIsDoneValue, props.todolistId))
+        //props.changeTaskStatus(props.task.id, newIsDoneValue, props.todolistId)
     }
     const onTitleChangeHandler = useCallback((newValue: string) => {
-        props.changeTaskTitle(props.task.id, newValue, props.todolistId)
-    }, [props.task.id, props.changeTaskTitle, props.todolistId]);
+        dispatch(changeTaskTitleAC(props.task.id, newValue, props.todolistId))
+       // props.changeTaskTitle(props.task.id, newValue, props.todolistId)
+    }, [dispatch]);
 
 
     return <div key={props.task.id} className={props.task.isDone ? 'is-done' : ''}>

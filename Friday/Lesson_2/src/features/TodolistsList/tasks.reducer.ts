@@ -17,9 +17,9 @@ const slice = createSlice({
       const index = tasks.findIndex((t) => t.id === action.payload.taskId);
       if (index !== -1) tasks.splice(index, 1);
     },
-    addTask: (state, action: PayloadAction<{ task: TaskType }>) => {
-      const tasks = state[action.payload.task.todoListId];
-      tasks.unshift(action.payload.task);
+    addTask: (state, action: PayloadAction<TaskType>) => {
+      const tasks = state[action.payload.todoListId];
+      tasks.unshift(action.payload);
     },
     updateTask: (
       state,
@@ -90,7 +90,7 @@ export const addTaskTC =
       .then((res) => {
         if (res.data.resultCode === 0) {
           const task = res.data.data.item;
-          dispatch(tasksActions.addTask({ task }));
+          dispatch(tasksActions.addTask(task));
           dispatch(appActions.setAppStatus({ status: "succeeded" }));
         } else {
           handleServerAppError(res.data, dispatch);
