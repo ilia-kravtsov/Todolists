@@ -1,7 +1,8 @@
 import { Dispatch } from "redux";
-import { authAPI } from "api/todolists-api";
+
 import { authActions } from "features/auth/auth.reducer";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {authAPI} from "features/auth/authAPI";
 
 const initialState = {
   status: "idle" as RequestStatusType,
@@ -31,12 +32,13 @@ const slice = createSlice({
 export const appReducer = slice.reducer;
 export const appActions = slice.actions;
 
-export const initializeAppTC = () => async (dispatch: Dispatch) => {
-    const res = await authAPI.me()
+export const initializeAppTC = () => (dispatch: Dispatch) => {
+  authAPI.me().then((res) => {
     if (res.data.resultCode === 0) {
       dispatch(authActions.setIsLoggedIn({ isLoggedIn: true }));
     } else {
-      console.log(res.data.messages[0])
     }
+
     dispatch(appActions.setAppInitialized({ isInitialized: true }));
+  });
 };

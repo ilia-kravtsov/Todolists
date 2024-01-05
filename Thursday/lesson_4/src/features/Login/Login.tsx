@@ -78,7 +78,7 @@ export const Login = () => {
                     <FormGroup>
                         <TextField label="Email"
                                    margin="normal"
-                                   {...formik.getFieldProps('email')}
+                                   {...formik.getFieldProps( 'email')}
                             // name='email'
                             // onChange={formik.handleChange}
                             // onBlur={formik.handleBlur}
